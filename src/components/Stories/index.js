@@ -65,7 +65,7 @@ const Stories = () => {
         {storiesPositions.map(({ x, y }, index) => (
           <View key={index} style={[styles.story, { left: x, top: y }]}>
 
-            <Story />
+            <Story name={index} />
 
           </View>
         ))}

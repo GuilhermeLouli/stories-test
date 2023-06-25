@@ -15,7 +15,7 @@ export default function Story({ name }) {
         </View>
       </LinearGradient>
 
-      <Text style={styles.text}>@derec_collins</Text>
+      <Text style={styles.text}>@{name}</Text>
     </>
   );
 }
