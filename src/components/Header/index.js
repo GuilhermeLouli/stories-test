@@ -6,23 +6,24 @@ export default function Header() {
     <View style={styles.container}>
 
       <View style={styles.header}>
-        <View style={styles.left}>
-          <View style={styles.profilePicture}></View>
+
+        <View style={styles.header_left}>
+          <View style={styles.header_left_button}></View>
         </View>
-        <View style={styles.right}>
-          <View style={styles.notification}></View>
-          <View style={styles.notification}></View>
+
+        <View style={styles.header_right}>
+          <View style={styles.header_right_button}></View>
+          <View style={styles.header_right_button}></View>
         </View>
+
       </View>
 
-
-      <Svg height="90" width="100%">
+      <Svg width="100%" height="90" >
         <Mask id="mask">
-          <Rect x="0" y="0" width="100%" height="100" fill="white" />
-          <Circle cx="50%" cy="90" r="34" fill="black" />
+          <Rect width="100%" height="100%" fill="white" />
+          <Circle cx="50%" cy="100%" r="34" fill="black" />
         </Mask>
-        <Rect x="0" y="0" width="100%" height="100" fill="white" mask="url(#mask)">
-        </Rect >
+        <Rect width="100%" height="100%" fill="white" mask="url(#mask)" />
       </Svg>
 
     </View>
@@ -36,38 +37,37 @@ const styles = StyleSheet.create({
   },
   header: {
     position: "absolute",
+    zIndex: 2,
     width: "100%",
     height: 100,
-    zIndex: 2,
     flexDirection: "row",
-    alignItems: "center"
   },
-  left: {
-    flexDirection: "row",
+  header_left: {
     width: "50%",
     height: "100%",
     alignItems: "center",
+    flexDirection: "row",
     justifyContent: "flex-start",
   },
-  right: {
-    flexDirection: "row",
+  header_right: {
     width: "50%",
     height: "100%",
     alignItems: "center",
+    flexDirection: "row",
     justifyContent: "flex-end",
   },
-  profilePicture: {
-    width: 45,
-    height: 45,
-    backgroundColor: "red",
+  header_left_button: {
+    width: 40,
+    height: 40,
     marginLeft: 20,
-    borderRadius: 45
+    backgroundColor: "red",
+    borderRadius: 40
   },
-  notification: {
-    width: 45,
-    height: 45,
-    backgroundColor: "orange",
+  header_right_button: {
+    width: 40,
+    height: 40,
     marginRight: 20,
-    borderRadius: 45
+    backgroundColor: "orange",
+    borderRadius: 40
   }
 });
