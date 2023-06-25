@@ -1,27 +1,14 @@
-import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
-
-const SignWave = () => {
-  const wavePath = "M0,100 Q50,50 100,100 T200,100";
-  
-  return (
-      <Svg height="200" width="200">
-        <Path
-          d={wavePath}
-          fill="transparent"
-          stroke="blue"
-          strokeWidth="20"
-        />
-      </Svg>
-  );
-};
+import Header from './src/components/Header';
+import Stories from './src/components/Stories';
+import CircleOfSquares from './src/components/Wheel';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Banana</Text>
-      <SignWave/>
+      <Header />
+      <Stories />
+      <CircleOfSquares />
     </View>
   );
 }
@@ -29,8 +16,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    width: "100%",
+    height: "100%",
+    backgroundColor: 'white',
+    alignItems: "center",
+  }
+
 });
