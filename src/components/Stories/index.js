@@ -3,11 +3,12 @@ import { View, StyleSheet, Dimensions, PanResponder, Text } from 'react-native';
 import Story from '../Story';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const Stories = () => {
+export default function Stories() {
 
   const storySize = 75;
   const wheelRadius = 540;
   const numStories = 40;
+  const offset = 12;
 
   const [storiesPositions, setStoriesPositions] = useState(() =>
     Array.from({ length: numStories }).map((_, index) => getStoryPosition(index))
@@ -45,7 +46,7 @@ const Stories = () => {
   }, []);
 
   function getStoryPosition(index) {
-    const angle = (index * 2 * Math.PI) / numStories;
+    const angle = ((index + offset) * 2 * Math.PI) / numStories;
     const x = wheelRadius * Math.cos(angle) - storySize / 2;
     const y = wheelRadius * Math.sin(angle) - storySize / 2;
     return { x, y };
@@ -102,5 +103,3 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
-
-export default Stories;
