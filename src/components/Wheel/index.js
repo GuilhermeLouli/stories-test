@@ -1,5 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { View, StyleSheet, Dimensions, PanResponder, Text } from 'react-native';
+import Story from '../Story';
 
 const CircleOfSquares = () => {
   const { width, height } = Dimensions.get('window');
@@ -53,13 +54,8 @@ const CircleOfSquares = () => {
         {squarePositions.map(({ x, y }, index) => (
           <View key={index} style={[styles.square, { left: x, top: y }]}>
 
-            <View style={styles.circle}>
-              <View style={styles.circle2}>
-                <View style={styles.photo} />
-              </View>
-            </View>
+            <Story />
 
-            <Text style={styles.text}>@derec_collins</Text>
           </View>
         ))}
       </View>
@@ -74,42 +70,17 @@ const styles = StyleSheet.create({
   },
   centerButton: {
     top: -25,
-    width: 50,
-    height: 50,
-    borderRadius: 50,
+    width: 45,
+    height: 45,
+    borderRadius: 45,
     backgroundColor: "green"
   },
   square: {
     position: 'absolute',
     width: 75,
     height: 75,
-    alignItems: "center"
-  },
-  circle: {
-    width: 70,
-    height: 70,
-    backgroundColor: "#5F85DC",
-    borderRadius: 35,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  circle2: {
-    width: 65,
-    height: 65,
-    backgroundColor: "white",
-    borderRadius: 65,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  photo: {
-    width: 60,
-    height: 60,
-    backgroundColor: "pink",
-    borderRadius: 30
-  },
-  text: {
-    textAlign: "center",
-    fontSize: 12
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
 
