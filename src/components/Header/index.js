@@ -33,7 +33,7 @@ export default function Header() {
 const styles = StyleSheet.create({
   container: {
     zIndex: 1,
-    width: "100%",
+    width: "100%"
   },
   header: {
     position: "absolute",
