@@ -4,7 +4,6 @@ import Story from '../Story';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Stories() {
-
   const storySize = 75;
   const wheelRadius = 540;
   const numStories = 40;
@@ -20,11 +19,10 @@ export default function Stories() {
         onStartShouldSetPanResponder: () => true,
         onPanResponderMove: (event, gestureState) => {
           setStoriesPositions((prevPositions) => {
-
             const radiusOffset = Math.sqrt(gestureState.dx ** 2 + gestureState.dy ** 2);
 
             const updatedPositions = prevPositions.map((position, index) => {
-              const angle = (index * 2 * Math.PI) / numStories;
+              const angle = ((numStories - index + offset) * 2 * Math.PI) / numStories;
               const x = wheelRadius * Math.cos(angle + radiusOffset / wheelRadius) - storySize / 2;
               const y = wheelRadius * Math.sin(angle + radiusOffset / wheelRadius) - storySize / 2;
               return { x, y };
@@ -46,7 +44,7 @@ export default function Stories() {
   }, []);
 
   function getStoryPosition(index) {
-    const angle = ((index + offset) * 2 * Math.PI) / numStories;
+    const angle = ((numStories - index + offset) * 2 * Math.PI) / numStories;
     const x = wheelRadius * Math.cos(angle) - storySize / 2;
     const y = wheelRadius * Math.sin(angle) - storySize / 2;
     return { x, y };
@@ -56,8 +54,8 @@ export default function Stories() {
     <>
       <LinearGradient
         colors={['#97A3E2', 'white']}
-        start={{ x: -2, y: .3 }}
-        end={{ x: .6, y: 0 }}
+        start={{ x: -2, y: 0.3 }}
+        end={{ x: 0.6, y: 0 }}
         style={styles.backgroundGradient}
       />
 
@@ -65,19 +63,17 @@ export default function Stories() {
       <View style={styles.container} {...panResponder.panHandlers}>
         {storiesPositions.map(({ x, y }, index) => (
           <View key={index} style={[styles.story, { left: x, top: y }]}>
-
             <Story name={index} />
-
           </View>
         ))}
       </View>
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   backgroundGradient: {
-    position: "absolute",
+    position: 'absolute',
     width: 300,
     height: 300,
     top: -80,
@@ -85,21 +81,21 @@ const styles = StyleSheet.create({
     transform: [{ scaleX: 2 }],
   },
   container: {
-    position: "absolute",
-    top: -380
+    position: 'absolute',
+    top: -380,
   },
   centerButton: {
     top: -25,
     width: 45,
     height: 45,
     borderRadius: 45,
-    backgroundColor: "green"
+    backgroundColor: 'green',
   },
   story: {
     position: 'absolute',
     width: 75,
     height: 75,
-    alignItems: "center",
-    justifyContent: "center"
-  }
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
