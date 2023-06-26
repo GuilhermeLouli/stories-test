@@ -10,9 +10,7 @@ export default function Story({ name }) {
         end={{ x: 0.5, y: 1 }}
         style={styles.circle}
       >
-        <View style={styles.circle2}>
-          <View style={styles.photo} />
-        </View>
+        <View style={styles.photo} />
       </LinearGradient>
 
       <Text style={styles.text}>@{name}</Text>
@@ -28,19 +26,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  circle2: {
-    width: 59,
-    height: 59,
-    borderRadius: 59,
-    backgroundColor: "white",
-    justifyContent: "center",
-    alignItems: "center"
-  },
   photo: {
-    width: 55,
-    height: 55,
+    width: 60,
+    height: 60,
     backgroundColor: "pink",
-    borderRadius: 55
+    borderWidth: 2,
+    borderColor: "white",
+    borderRadius: 60,
   },
   text: {
     textAlign: "center",

@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Header from './src/components/Header';
 import Stories from './src/components/Stories';
-import CircleOfSquares from './src/components/Wheel';
 
 export default function App() {
   return (
