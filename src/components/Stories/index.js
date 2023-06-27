@@ -1,47 +1,23 @@
 import React, { useMemo, useState } from 'react';
-import { View, StyleSheet, PanResponder } from 'react-native';
+import { View, StyleSheet, PanResponder, FlatList } from 'react-native';
 import Story from '../Story';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Stories() {
 
-  const storyStyleSize = 75;
-  const wheelRadius = 540;
-  const numStories = 40;
-  const radiusDefaultOffset = 12;
-
-  const getStoryPosition = index => {
-    const angle = ((numStories - index + radiusDefaultOffset) * 2 * Math.PI) / numStories;
-    const x = wheelRadius * Math.cos(angle) - storyStyleSize / 2;
-    const y = wheelRadius * Math.sin(angle) - storyStyleSize / 2;
-    return { x, y };
-  }
-
-  const [storiesPositions, setStoriesPositions] = useState(Array.from({ length: numStories }).map((_, i) => getStoryPosition(i)))
-  const [radiusOffset] = useState({ value: 0 })
-
-  const panResponder = useMemo(() =>
-    PanResponder.create({
-
-      onStartShouldSetPanResponder: () => true,
-
-      onPanResponderMove: (_, gestureState) => {
-
-        const newRadiusOffset = radiusOffset.value + (-Math.sign(gestureState.dx) * Math.sqrt(gestureState.dx ** 2))
-
-        setStoriesPositions(s => s.map((_, index) => {
-          const angle = ((numStories - index + radiusDefaultOffset) * 2 * Math.PI) / numStories;
-          const x = wheelRadius * Math.cos(angle + newRadiusOffset / wheelRadius) - storyStyleSize / 2;
-          const y = wheelRadius * Math.sin(angle + newRadiusOffset / wheelRadius) - storyStyleSize / 2;
-          return { x, y };
-        })
-        )
-      },
-
-      onPanResponderRelease: (_, gestureState) => radiusOffset.value += (-Math.sign(gestureState.dx) * Math.sqrt(gestureState.dx ** 2))
-    }),
-    []
-  );
+  const data = [
+    { id: '1', text: 'Item 1' },
+    { id: '2', text: 'Item 2' },
+    { id: '3', text: 'Item 3' },
+    { id: '4', text: 'Item 4' },
+    { id: '5', text: 'Item 5' },
+    { id: '6', text: 'Item 6' },
+    { id: '7', text: 'Item 7' },
+    { id: '8', text: 'Item 8' },
+    { id: '9', text: 'Item 9' },
+    { id: '10', text: 'Item 10' },
+    { id: '11', text: 'Item 11' },
+  ];
 
   return (
     <>
@@ -54,15 +30,19 @@ export default function Stories() {
 
       <View style={styles.centerButton} />
 
-      <View style={styles.container} {...panResponder.panHandlers}>
+      <FlatList
+        data={data}
+        horizontal={true}
+        keyExtractor={i => i.id}
+        contentContainerStyle={{ paddingLeft: 5 }}
+        renderItem={({ item }) => (
 
-        {storiesPositions.map((item, index) => (
-          <View key={index} style={[styles.story, { left: item.x, top: item.y }]}>
-            <Story name={index} />
+          <View style={[styles.story, { top: 5 }]}>
+            <Story name={item.text} />
           </View>
-        ))}
 
-      </View>
+        )}
+      />
     </>
   );
 }
@@ -76,21 +56,18 @@ const styles = StyleSheet.create({
     borderRadius: 300,
     transform: [{ scaleX: 2 }],
   },
-  container: {
-    position: 'absolute',
-    top: -380,
-  },
   centerButton: {
-    top: -25,
+    position: "absolute",
+    top: 70,
     width: 45,
     height: 45,
     borderRadius: 45,
     backgroundColor: 'green',
   },
   story: {
-    position: 'absolute',
-    width: 75,
-    height: 75,
+    width: 70,
+    height: 70,
+    margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
